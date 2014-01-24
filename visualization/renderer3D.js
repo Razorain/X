@@ -542,6 +542,7 @@ X.renderer3D.prototype.update_ = function(object) {
   var file = object._file;
   var transform = object._transform;
   var colortable = object._colortable;
+  var colourmap = object._colourmap;
   var labelmap = object._labelmap; // here we access directly since we do not
   // want to create one using the labelmap() singleton accessor
   var scalars = object._scalars; // same direct access policy
@@ -585,6 +586,13 @@ X.renderer3D.prototype.update_ = function(object) {
 
     // start loading
     this._loader.load(colortable, object);
+
+    return;
+
+  } else if (goog.isDefAndNotNull(colourmap) &&
+      goog.isDefAndNotNull(colourmap._file) && colourmap._file._dirty) {
+
+    this._loader.load(colourmap, object);
 
     return;
 

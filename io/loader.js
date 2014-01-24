@@ -38,6 +38,7 @@ goog.require('X.parserFSM');
 goog.require('X.parserIMAGE');
 goog.require('X.parserLBL');
 goog.require('X.parserLUT');
+goog.require('X.parserMAP');
 goog.require('X.parserMGZ');
 goog.require('X.parserNII');
 goog.require('X.parserNRRD');
@@ -45,6 +46,7 @@ goog.require('X.parserOBJ');
 goog.require('X.parserSTL');
 goog.require('X.parserTRK');
 goog.require('X.parserVTK');
+goog.require('X.parserMAP');
 goog.require('goog.structs.Map');
 
 
@@ -377,6 +379,7 @@ X.loader.extensions = {
   '': [X.parserDCM, null],
   'CRV': [X.parserCRV, null],
   'LABEL': [X.parserLBL, null],
+  'MAP': [X.parserMAP, null],
   'MGH': [X.parserMGZ, false],
   'MGZ': [X.parserMGZ, true],
   'TXT': [X.parserLUT, null],

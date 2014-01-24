@@ -33,6 +33,7 @@ goog.provide('X.object');
 // requires
 goog.require('X.base');
 goog.require('X.colortable');
+goog.require('X.colourmap');
 goog.require('X.displayable');
 goog.require('X.indexer');
 goog.require('X.loadable');
@@ -80,6 +81,14 @@ X.object = function(object) {
    * @protected
    */
   this._colortable = null;
+
+  /**
+   * The colour map of this object.
+   *
+   * @type {!Array}
+   * @protected
+   */
+  this._colourmap = null;
 
   /**
    * The scalars of this object.
@@ -199,6 +208,24 @@ X.object.prototype.__defineGetter__('colortable', function() {
 
 
 /**
+ * The colour map associated with this object.
+ *
+ * @return {!Array} The colour map.
+ */
+X.object.prototype.__defineGetter__('colourmap', function() {
+
+  if (!this._colourmap) {
+
+    this._colourmap = new X.colourmap();
+
+  }
+
+  return this._colourmap;
+
+});
+
+
+/**
  * The scalars associated with this object.
  *
  * @return {?X.scalars} The scalars.
@@ -270,7 +297,7 @@ X.object.OPACITY_COMPARATOR = function(object1, object2) {
 
   // check if we have two valid objects to compare
   if (!goog.isDefAndNotNull(object1) || !goog.isDefAndNotNull(object2) ||
-      !(object1 instanceof X.object) || !(object2 instanceof X.object)) {
+          !(object1 instanceof X.object) || !(object2 instanceof X.object)) {
 
     throw new Error('Fatal: Two valid X.objects are required for comparison.');
 
@@ -291,7 +318,7 @@ X.object.OPACITY_COMPARATOR = function(object1, object2) {
   }
 
   if (goog.isDefAndNotNull(object1._distance) &&
-      goog.isDefAndNotNull(object2._distance)) {
+          goog.isDefAndNotNull(object2._distance)) {
 
     // order back-to-front from the viewer's eye
 
